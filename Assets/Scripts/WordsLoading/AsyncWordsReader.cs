@@ -33,11 +33,16 @@ namespace WordsLoading
                 length = await stream.ReadAsync(buffer, 0, _buffSize);
 
                 strBuffer = Encoding.Default.GetString(buffer, 0, length);
-
+                
                 if (cuttedWord != null)
                 {
                     strBuffer = cuttedWord + strBuffer;
                     cuttedWord = null;
+                }
+
+                if (strBuffer.Length == 0)
+                {
+                    continue;
                 }
 
                 withoutPunctuation = TrimPunctuation(strBuffer);
